@@ -43,8 +43,8 @@ func (c *Cluster) getLeader() (string) {
 func (c *Cluster) LoadSlaveStates(client MesosClient) (error) {
     var erred bool
 
-    for i := range c.Slaves {
-        if err := c.Slaves[i].LoadState(client); err != nil {
+    for _, s := range c.Slaves {
+        if err := s.LoadState(client); err != nil {
             erred = true
         }
     }
@@ -56,8 +56,8 @@ func (c *Cluster) LoadSlaveStates(client MesosClient) (error) {
 func (c *Cluster) LoadSlaveStats(client MesosClient) (error) {
     var erred bool
 
-    for i := range c.Slaves {
-        if err := c.Slaves[i].LoadStats(client); err != nil {
+    for _, s := range c.Slaves {
+        if err := s.LoadStats(client); err != nil {
             erred = true
         }
     }
