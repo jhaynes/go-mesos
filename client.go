@@ -97,7 +97,6 @@ func (c *Client) doRequst(method, url string)(int, string, *http.Response, error
 		request.Header.Add("Content-Type", "application/json")
 		var content string
 		if response, err := client.Do(request); err != nil {
-            log.Println("HERE")
             log.Printf("Unable to make call to Mesos: %s", err)
             c.logger.Printf("Unable to make call to Mesos: %s", err)
             return 0, "", nil, errors.New("Unable to make call to Mesos")
@@ -142,5 +141,5 @@ func (c *Client) slaveStatsURL(hostname string) string {
 }
 
 func (c *Client) slaveURL(hostname, uri string) string {
-    return fmt.Sprintf("%s//%s:%d/%s", c.config.getScheme(), hostname, c.config.SlavePort, uri)
+    return fmt.Sprintf("http://%s:%d/%s", hostname, c.config.SlavePort, uri)
 }
