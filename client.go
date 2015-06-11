@@ -122,7 +122,7 @@ func (c *Client) buildDiscoveryURL(uri string) string {
 
 
 func (c *Client) setMasterURL(leader string) {
-    c.config.MasterURL = fmt.Sprintf("%s//%s:%d", c.config.getScheme(), leader, c.config.MasterPort)
+    c.config.MasterURL = fmt.Sprintf("http://%s:%d", leader, c.config.MasterPort)
 }
 
 
